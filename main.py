@@ -45,6 +45,7 @@ if __name__ == "__main__":
     histogram(gray_image, 'gri')
 
     img_with_noise = add_gaussian_noise(gray_image, gray_image_shape, config)
+    cv2.imwrite("image_with_noise.png", img_with_noise)
     histogram(img_with_noise, 'gri cu zgomot')
 
     filtered_image, _ = apply_filter(img_with_noise, config.filtru.size)

@@ -26,7 +26,6 @@ def add_gaussian_noise(gray_image: np.ndarray, gray_image_shape: tuple, config):
     medie = config.zgomot.medie
     n = np.random.normal(medie, sigma, gray_image_shape)
     img_with_noise = gray_image + n
-    cv2.imwrite("image_with_noise.png", img_with_noise)
     img_with_noise = np.clip(img_with_noise, 0, 255).astype(np.uint8)
     return img_with_noise
 
