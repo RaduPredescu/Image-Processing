@@ -1,3 +1,9 @@
 zgomot:
   dispersie: 50
   medie: 20
+
+filtru:
+  size: 20
+  
+mse:
+  capat: 3

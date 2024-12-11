@@ -47,10 +47,10 @@ if __name__ == "__main__":
     img_with_noise = add_gaussian_noise(gray_image, gray_image_shape, config)
     histogram(img_with_noise, 'gri cu zgomot')
 
-    filtered_image, _ = apply_filter(img_with_noise, 20)
+    filtered_image, _ = apply_filter(img_with_noise, config.filtru.size)
 
-    cv2.imwrite("rectified.png", filtered_image)
+    cv2.imwrite("filtered.png", filtered_image)
     histogram(filtered_image,'gri cu zgomot, filtrata')
 
-    print("MSE pentru imaginea gri si imaginea cu zgomot: {}".format(mse(gray_image, img_with_noise, 3)))
-    print("MSE pentru imaginea gri si imaginea filtrata: {}".format(mse(gray_image, filtered_image, 3)))
+    print("MSE pentru imaginea gri si imaginea cu zgomot: {}".format(mse(gray_image, img_with_noise, config.mse.capat)))
+    print("MSE pentru imaginea gri si imaginea filtrata: {}".format(mse(gray_image, filtered_image, config.mse.capat)))

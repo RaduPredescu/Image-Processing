@@ -21,7 +21,7 @@ def transform_to_gray(image: np.ndarray):
     return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 
-def add_gaussian_noise(gray_image, gray_image_shape, config):
+def add_gaussian_noise(gray_image: np.ndarray, gray_image_shape: tuple, config):
     sigma = config.zgomot.dispersie
     medie = config.zgomot.medie
     n = np.random.normal(medie, sigma, gray_image_shape)
@@ -61,7 +61,7 @@ def histogram(image: np.ndarray, purpose: str):
         plt.show()
 
 
-def apply_filter(img, size):
+def apply_filter(img: np.ndarray, size: int):
     h, w = img.shape
     capat = size // 2
     # pregatire imagine noua cu zero
@@ -79,7 +79,7 @@ def apply_filter(img, size):
     return new_img, POS
 
 
-def adaptiv_orientat(vec, size):
+def adaptiv_orientat(vec: np.ndarray, size: int):
     center = size // 2
     # medie orizontala ( 0 grade )
     med0 = np.sum(vec[center, :]) / size
@@ -103,7 +103,7 @@ def adaptiv_orientat(vec, size):
     return temp[pos], pos
 
 
-def mse(img, img_modif, capat):
+def mse(img: np.ndarray, img_modif: np.ndarray, capat: int):
     h, w = img.shape
     delta = (
         img[capat : h - capat, capat : w - capat]
