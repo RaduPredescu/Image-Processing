@@ -13,7 +13,7 @@ import cv2
 
 if __name__ == "__main__":
     """
-    Imaginea incarcata trebuie sa fie neaparat RGB, altfel programul nu va merge :)
+    Imaginea incarcata trebuie sa fie neaparat RGB
     """
     params = read_params("config.yaml")
     config = Config(params=params)
