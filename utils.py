@@ -5,23 +5,29 @@ import matplotlib.pyplot as plt
 
 def loader(path: str):
     """
-    cv2 method to load our image
+   metoda din opencv pentru incarcarea imaginii in format color
     """
     return cv2.imread(path, cv2.IMREAD_ANYCOLOR)
 
 
 def size(image: np.ndarray):
     """
-    Returns the shape attribute of our cv2 image
+    metoda pentru a returna shape-ul imaginii
     """
     return image.shape
 
 
 def transform_to_gray(image: np.ndarray):
+    """
+    Converteste imaginea noastra intr-una de gri
+    """
     return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 
 def add_gaussian_noise(gray_image: np.ndarray, gray_image_shape: tuple, config):
+    """
+    Adauga zgomot gaussian pe imaginea de gri
+    """
     sigma = config.zgomot.dispersie
     medie = config.zgomot.medie
     n = np.random.normal(medie, sigma, gray_image_shape)
@@ -31,6 +37,9 @@ def add_gaussian_noise(gray_image: np.ndarray, gray_image_shape: tuple, config):
 
 
 def histogram(image: np.ndarray, purpose: str):
+    """
+    Calculeaza histograma imaginii, in functie de tipul acesteia
+    """
     if purpose == "color":
         colors = ("b", "g", "r")
         for i, color in enumerate(colors):
@@ -61,6 +70,9 @@ def histogram(image: np.ndarray, purpose: str):
 
 
 def apply_filter(img: np.ndarray, size: int):
+    """
+    Aplica un filtru de medie pe imaginea
+    """
     h, w = img.shape
     capat = size // 2
     # pregatire imagine noua cu zero
@@ -79,6 +91,9 @@ def apply_filter(img: np.ndarray, size: int):
 
 
 def adaptiv_orientat(vec: np.ndarray, size: int):
+    """
+    calculeaza valorile noilor pixeli, dupa filtrare
+    """
     center = size // 2
     # medie orizontala ( 0 grade )
     med0 = np.sum(vec[center, :]) / size
@@ -103,6 +118,9 @@ def adaptiv_orientat(vec: np.ndarray, size: int):
 
 
 def mse(img: np.ndarray, img_modif: np.ndarray, capat: int):
+    """
+    calculeaza eroarea medie intre doua imagini
+    """
     h, w = img.shape
     delta = (
         img[capat : h - capat, capat : w - capat]
